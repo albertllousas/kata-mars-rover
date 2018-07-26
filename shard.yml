@@ -2,7 +2,7 @@ name: kata-mars-rover
 version: 0.1.0
 
 authors:
-  - Albert Ortiz <aortiz@thoughtworks.com>
+  - Albert Llousas <allousas@thoughtworks.com>
 
 targets:
   kata-mars-rover:

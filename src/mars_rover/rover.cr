@@ -1,29 +1,33 @@
-module MarsRover
+class Rover
+  getter position
 
-  def moveRover(command : Command) : Int32
-    1
+  def initialize(
+    @position : Position,
+    @grid : Grid,
+    @report_obstacle : Point -> Void,
+    # defaults
+    @parse_command : Char -> Command = ->Commands.parse_command(Char),
+    @next : (Grid, Position, Command) -> Position = ->Movement.next_position(Grid, Position, Command)
+  )
   end
 
-  class Rover
-
-      getter position
-
-      def initialize(
-          @position : Position,
-          @move : Command -> Int32 = ->moveRover(Command) # parser, is_valid, next_pos (pos, movement) -> next_pos
-      )
+  def execute(commands : String) : Rover
+    if commands.empty?
+      self
+    else
+      command = @parse_command.call(commands.chart_at 0)
+      next_position = @next.call(@grid , @position, command)
+      if grid.has_obstacle next_position.point
+        @report_obstacle.call next_position.point
+        self
+      else
+        self.with(next_position).execute(commands[1..-1])
       end
+    end
+  end
 
-      def execute(commands : String): Rover
-#        move
-#         if final rover
-#          else execute
-      end
-
-      def move(command : Command) : Int32
-#      next_pos
-        @move.call(command)
-      end
+  private def with(position : Position)
+    rover = Rover.new(position, @grid, @report_obstacle, @parse_command, @next_position )
   end
 
 end
