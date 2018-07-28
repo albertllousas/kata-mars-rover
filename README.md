@@ -31,6 +31,8 @@ https://crystal-lang.org/docs/installation/on_mac_osx_using_homebrew.html
 
 ##Usage
 
+It is an API of rover, take a look on the test to see how it looks
+
 ### run tests
 ```crystal
 crystal spec
@@ -42,8 +44,9 @@ crystal tool format src/
 
 ## To improve
 
-- Error handling: Crystal only provides for now a simple exception  
-- Mocking libraries:
+- Error handling: Crystal's way to do error handling is by raising and rescuing exceptions without typing methods,
+  could be improved with a using a simple wrapper or a monadic structure
+- Mocking libraries: https://github.com/waterlink/mocks.cr is not working with crystal `0.25.1`, so it was not possible to mock  
 
 ## Contributing
 
