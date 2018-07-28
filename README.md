@@ -31,7 +31,11 @@ https://crystal-lang.org/docs/installation/on_mac_osx_using_homebrew.html
 
 ##Usage
 
-It is an API of rover, take a look on the test to see how it looks
+It is an API of rover, take a look on the test to see how it looks.
+
+### IDE
+Given it is an earlier version of crystal, IDEs as idea are not supporting it well yet.
+I would recommend using [atom.io](https://atom.io/) with crystal packages.
 
 ### run tests
 ```crystal
