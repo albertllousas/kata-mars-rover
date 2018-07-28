@@ -11,7 +11,7 @@ module Commands
   class UnparseableCommandException < Exception
   end
 
-  def parse_command(command : Char) : Command
+  def self.parse_command(command : Char) : Command
     case command
     when 'f'
       Command::MoveForward

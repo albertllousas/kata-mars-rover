@@ -29,11 +29,11 @@ describe Location do
   describe Grid do
     describe "#has_obstacle" do
       it "should not detect an obstacle if there isn't for a given point" do
-        Grid.new(3,3,[] of Point).has_obstacle(Point.new(1,1)).should be_false
+        Grid.new(3,3,[] of Point).has_obstacle?(Point.new(1,1)).should be_false
       end
 
       it "should detect an obstacle if there is one for a given point" do
-        Grid.new(3,3,[Point.new(1,1)]).has_obstacle(Point.new(1,1)).should be_true
+        Grid.new(3,3,[Point.new(1,1)]).has_obstacle?(Point.new(1,1)).should be_true
       end
     end
   end

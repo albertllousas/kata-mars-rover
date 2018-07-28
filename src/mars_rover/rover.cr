@@ -7,7 +7,7 @@ class Rover
     @report_obstacle : Point -> Void,
     # defaults
     @parse_command : Char -> Command = ->Commands.parse_command(Char),
-    @next : (Grid, Position, Command) -> Position = ->Movement.next_position(Grid, Position, Command)
+    @next_position : (Grid, Position, Command) -> Position = ->Movement.next_position(Grid, Position, Command)
   )
   end
 
@@ -15,9 +15,9 @@ class Rover
     if commands.empty?
       self
     else
-      command = @parse_command.call(commands.chart_at 0)
-      next_position = @next.call(@grid , @position, command)
-      if grid.has_obstacle next_position.point
+      command = @parse_command.call(commands.char_at 0)
+      next_position = @next_position.call(@grid , @position, command)
+      if @grid.has_obstacle? next_position.point
         @report_obstacle.call next_position.point
         self
       else
@@ -27,7 +27,7 @@ class Rover
   end
 
   private def with(position : Position)
-    rover = Rover.new(position, @grid, @report_obstacle, @parse_command, @next_position )
+    rover = Rover.new(position, @grid, @report_obstacle, @parse_command, @next_position)
   end
 
 end

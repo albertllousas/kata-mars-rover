@@ -17,32 +17,33 @@ Develop an api that moves a rover around on a grid.
   the rover moves up to the last possible point and reports the obstacle.
 
 ## Approach
+The solution is a mixed paradigm approach of object oriented programming and functional programming with pure data structures.
 
-There is a more nuanced point made by Uncle Bob regarding the above, that the Law of Demeter should not apply to pure data structures anyway.
+## Installation & Troubleshooting
 
-Pure data structures (“objects” that have no behavior just data) are integral building blocks of a procedural, functional or a mixed paradigm approach. As such, they are of course exempt from having to comply with the Law of Demeter, which is a Law for Object-Oriented development.
+```shell
+crystal -v
+Crystal 0.25.1 (2018-06-30)
+```
+Install crystal lang following instructions here :
 
-## Installation
+https://crystal-lang.org/docs/installation/on_mac_osx_using_homebrew.html
 
-TODO: Write installation instructions here
+##Usage
 
-## Usage
-
-TODO: Write usage instructions here
-
-format code
+### run tests
+```crystal
+crystal spec
+```
+### format code
 ```crystal
 crystal tool format src/
 ```
 
-run tests
-```crystal
-crystal spec
-```
-
 ## To improve
 
-Error handling
+- Error handling: Crystal only provides for now a simple exception  
+- Mocking libraries:
 
 ## Contributing
 
@@ -52,10 +53,6 @@ Error handling
 4. Push to the branch (`git push origin my-new-feature`)
 5. Create a new Pull Request
 
-
-## Troubleshooting
-
-https://crystal-lang.org/docs/installation/on_mac_osx_using_homebrew.html
 
 ## Contributors
 

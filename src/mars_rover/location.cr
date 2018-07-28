@@ -51,7 +51,7 @@ module Location
     def initialize(@sizeX : Int32, @sizeY : Int32, @obstacles : Array(Point) = [] of Point)
     end
 
-    def has_obstacle(point : Point) : Bool
+    def has_obstacle?(point : Point) : Bool
       (@obstacles & [point]).size != 0
     end
   end
