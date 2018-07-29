@@ -24,17 +24,17 @@ describe Movement do
     end
   end
 
-  describe "#analogous_of" do
+  describe "#fit_in" do
     it "should return the same point given a point inside the grid" do
-      analogous_of(Point.new(1, 1), Grid.new(3, 3)).should eq(Point.new(1, 1))
+      fit_in(Point.new(1, 1), Grid.new(3, 3)).should eq(Point.new(1, 1))
     end
 
     it "should return the same point given a point in the edge of the grid" do
-      analogous_of(Point.new(2, 1), Grid.new(3, 3)).should eq(Point.new(2, 1))
+      fit_in(Point.new(2, 1), Grid.new(3, 3)).should eq(Point.new(2, 1))
     end
 
     it "should return an analogous point inside the grid given a point outside" do
-      analogous_of(Point.new(4, 1), Grid.new(3, 3)).should eq(Point.new(1, 1))
+      fit_in(Point.new(4, 1), Grid.new(3, 3)).should eq(Point.new(1, 1))
     end
   end
 

@@ -5,10 +5,10 @@ module Movement
     case command
     when Command::MoveForward
       next_point = step_to(position.point, position.direction)
-      position.with analogous_of(next_point, grid)
+      position.with fit_in(next_point, grid)
     when Command::MoveBackward
       next_point = step_to(position.point, Direction.opposite(position.direction))
-      position.with analogous_of(next_point, grid)
+      position.with fit_in(next_point, grid)
     when Command::TurnRight
       position.with Direction.right(position.direction)
     when Command::TurnLeft
@@ -18,7 +18,7 @@ module Movement
     end
   end
 
-  def analogous_of(point : Point, grid : Grid) : Point
+  def fit_in(point : Point, grid : Grid) : Point
       Point.new(point.x.modulo(grid.sizeX), point.y.modulo(grid.sizeY))
   end
 
