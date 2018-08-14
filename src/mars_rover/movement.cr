@@ -1,14 +1,14 @@
 module Movement
   extend self
 
-  def next_position(grid : Grid, position : Position, command : Command) : Position
+# to Position self
+
+  def next_position(position : Position, command : Command) : Position
     case command
     when Command::MoveForward
-      next_point = step_to(position.point, position.direction)
-      position.with fit_in(next_point, grid)
+      position.with step_to(position.point, position.direction)
     when Command::MoveBackward
-      next_point = step_to(position.point, Direction.opposite(position.direction))
-      position.with fit_in(next_point, grid)
+      position.with step_to(position.point, Direction.opposite(position.direction))
     when Command::TurnRight
       position.with Direction.right(position.direction)
     when Command::TurnLeft
@@ -18,20 +18,23 @@ module Movement
     end
   end
 
-  def fit_in(point : Point, grid : Grid) : Point
-      Point.new(point.x.modulo(grid.sizeX), point.y.modulo(grid.sizeY))
-  end
+
+
+  # to Point self
+
+
+  ONE_STEP = 1
 
   def step_to(point : Point, direction : Direction) : Point
     case direction
     when .north?
-      Point.new(point.x, point.y + 1)
+      Point.new(point.x, point.y + ONE_STEP)
     when .south?
-      Point.new(point.x, point.y - 1)
+      Point.new(point.x, point.y - ONE_STEP)
     when .east?
-      Point.new(point.x + 1, point.y)
+      Point.new(point.x + ONE_STEP, point.y)
     when .west?
-      Point.new(point.x - 1, point.y)
+      Point.new(point.x - ONE_STEP, point.y)
     else
       point
     end

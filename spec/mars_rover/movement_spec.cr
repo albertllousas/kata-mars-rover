@@ -24,47 +24,28 @@ describe Movement do
     end
   end
 
-  describe "#fit_in" do
-    it "should return the same point given a point inside the grid" do
-      fit_in(Point.new(1, 1), Grid.new(3, 3)).should eq(Point.new(1, 1))
-    end
-
-    it "should return the same point given a point in the edge of the grid" do
-      fit_in(Point.new(2, 1), Grid.new(3, 3)).should eq(Point.new(2, 1))
-    end
-
-    it "should return an analogous point inside the grid given a point outside" do
-      fit_in(Point.new(4, 1), Grid.new(3, 3)).should eq(Point.new(1, 1))
-    end
-  end
-
   describe "#next" do
-    grid = Grid.new(4, 4)
     current_position = Position.new(Point.new(2, 2), Direction::North)
 
     it "should calculate the next position for a move forward command" do
-      position = next_position(grid, current_position, Command::MoveForward)
+      position = next_position(current_position, Command::MoveForward)
       position.should eq(Position.new(Point.new(2, 3), Direction::North))
     end
 
     it "should calculate the next position for a move backward command" do
-      position = next_position(grid, current_position, Command::MoveBackward)
+      position = next_position(current_position, Command::MoveBackward)
       position.should eq(Position.new(Point.new(2, 1), Direction::North))
     end
 
     it "should calculate the next position for a turn right command" do
-      position = next_position(grid, current_position, Command::TurnRight)
+      position = next_position(current_position, Command::TurnRight)
       position.should eq(Position.new(Point.new(2, 2), Direction::East))
     end
 
     it "should calculate the next position for a turn left command" do
-      position = next_position(grid, current_position, Command::TurnLeft)
+      position = next_position(current_position, Command::TurnLeft)
       position.should eq(Position.new(Point.new(2, 2), Direction::West))
     end
 
-    it "should wrap from one edge of the grid to another" do
-      position = next_position(grid, Position.new(Point.new(3, 3), Direction::North), Command::MoveForward)
-      position.should eq(Position.new(Point.new(3, 0), Direction::North))
-    end
   end
 end

@@ -7,7 +7,7 @@ class Rover
     @report_obstacle : Point -> Void,
     # defaults
     @parse_command : Char -> Command = ->Commands.parse_command(Char),
-    @next_position : (Grid, Position, Command) -> Position = ->Movement.next_position(Grid, Position, Command)
+    @next_position : (Position, Command) -> Position = ->Movement.next_position(Position, Command)
   )
   end
 
@@ -16,12 +16,13 @@ class Rover
       self
     else
       command = @parse_command.call(commands.char_at 0)
-      next_position = @next_position.call(@grid , @position, command)
-      if @grid.has_obstacle? next_position.point
-        @report_obstacle.call next_position.point
+      next_position = @next_position.call(@position, command)
+      wrapped_position = next_position.with(@grid.fit_in(next_position.point))
+      if @grid.has_obstacle? wrapped_position.point
+        @report_obstacle.call wrapped_position.point
         self
       else
-        self.with(next_position).execute(commands[1..-1])
+        self.with(wrapped_position).execute(commands[1..-1])
       end
     end
   end
