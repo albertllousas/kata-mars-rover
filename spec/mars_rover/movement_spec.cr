@@ -4,26 +4,6 @@ include Location
 include Movement
 
 describe Movement do
-  describe "#step_to" do
-    point = Point.new(2, 2)
-
-    it "should step to north" do
-      step_to(point, Direction::North).should eq(Point.new(2, 3))
-    end
-
-    it "should step to south" do
-      step_to(point, Direction::South).should eq(Point.new(2, 1))
-    end
-
-    it "should step to east" do
-      step_to(point, Direction::East).should eq(Point.new(3, 2))
-    end
-
-    it "should step to west" do
-      step_to(point, Direction::West).should eq(Point.new(1, 2))
-    end
-  end
-
   describe "#next" do
     current_position = Position.new(Point.new(2, 2), Direction::North)
 
@@ -46,6 +26,5 @@ describe Movement do
       position = next_position(current_position, Command::TurnLeft)
       position.should eq(Position.new(Point.new(2, 2), Direction::West))
     end
-
   end
 end

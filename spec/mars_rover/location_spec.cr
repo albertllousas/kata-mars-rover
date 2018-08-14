@@ -3,6 +3,28 @@ require "../spec_helper"
 include Location
 
 describe Location do
+  describe Point do
+    describe "#step_to" do
+      point = Point.new(2, 2)
+
+      it "should step to north" do
+        Point.step_to(point, Direction::North).should eq(Point.new(2, 3))
+      end
+
+      it "should step to south" do
+        Point.step_to(point, Direction::South).should eq(Point.new(2, 1))
+      end
+
+      it "should step to east" do
+        Point.step_to(point, Direction::East).should eq(Point.new(3, 2))
+      end
+
+      it "should step to west" do
+        Point.step_to(point, Direction::West).should eq(Point.new(1, 2))
+      end
+    end
+  end
+
   describe Direction do
     it "should give the right side of the direction" do
       Direction.right(Direction::North).should eq(Direction::East)
