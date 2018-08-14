@@ -26,13 +26,13 @@ module Location
     def self.step_to(point : Point, direction : Direction) : Point
       case direction
       when .north?
-        Point.new(point.x, point.y + ONE_STEP)
+        point.copy_with y: point.y + ONE_STEP
       when .south?
-        Point.new(point.x, point.y - ONE_STEP)
+        point.copy_with y: point.y - ONE_STEP
       when .east?
-        Point.new(point.x + ONE_STEP, point.y)
+        point.copy_with x: point.x + ONE_STEP
       when .west?
-        Point.new(point.x - ONE_STEP, point.y)
+        point.copy_with x: point.x - ONE_STEP
       else
         point
       end
