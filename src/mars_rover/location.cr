@@ -22,13 +22,8 @@ module Location
     end
   end
 
-  struct Point
-    getter x : Int32
-    getter y : Int32
+  record Point, x : Int32 = 0, y : Int32 = 0 do
     ONE_STEP = 1
-
-    def initialize(@x : Int, @y : Int)
-    end
 
     def self.step_to(point : Point, direction : Direction) : Point
       case direction
@@ -46,19 +41,20 @@ module Location
     end
   end
 
-  struct Position
-    getter point : Point
-    getter direction : Direction
-
-    def initialize(@point : Point, @direction : Direction)
-    end
-
-    def with(point : Point)
-      Position.new(point, @direction)
-    end
-
-    def with(direction : Direction)
-      Position.new(@point, direction)
+  record Position, point : Point, direction : Direction do
+    def self.next(position : Position, command : Command) : Position
+      case command
+      when Command::MoveForward
+        position.copy_with point: Point.step_to(position.point, position.direction)
+      when Command::MoveBackward
+        position.copy_with point: Point.step_to(position.point, Direction.opposite(position.direction))
+      when Command::TurnRight
+        position.copy_with direction: Direction.right(position.direction)
+      when Command::TurnLeft
+        position.copy_with direction: Direction.left(position.direction)
+      else
+        position
+      end
     end
   end
 end
