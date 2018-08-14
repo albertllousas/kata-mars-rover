@@ -1,8 +1,6 @@
 module Location
   extend self
 
-  # to https://github.com/crystal-lang/crystal/blob/master/src/macros.cr
-
   enum Direction
     North
     East

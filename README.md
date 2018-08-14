@@ -1,5 +1,5 @@
 # kata-mars-rover
-I choose this one to learn and play a bit with Crystal language.
+I chose this one to learn and play a bit with Crystal language.
 
 Since it is done in an earlier version of Crystal (0.25.1), language features could change.
 
