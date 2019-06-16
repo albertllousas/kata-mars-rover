@@ -45,5 +45,4 @@ class Rover
           position
         end
       end
-  end
 end
