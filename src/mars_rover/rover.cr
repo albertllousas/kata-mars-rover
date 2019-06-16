@@ -7,7 +7,7 @@ class Rover
     @report_obstacle : Point -> Void,
     # defaults
     @parse_command : Char -> Command = ->Commands.parse_command(Char),
-    @next_position : (Position, Command) -> Position = ->Position.next(Position, Command)
+    @next_position : (Position, Command) -> Position = ->Rover.next(Position, Command)
   )
   end
 
@@ -31,4 +31,19 @@ class Rover
     rover = Rover.new(position, @grid, @report_obstacle, @parse_command, @next_position)
   end
 
+  def self.next(position : Position, command : Command) : Position
+      case command
+        when Command::MoveForward
+          position.copy_with point: Point.step_to(position.point, position.direction)
+        when Command::MoveBackward
+          position.copy_with point: Point.step_to(position.point, Direction.opposite(position.direction))
+        when Command::TurnRight
+          position.copy_with direction: Direction.right(position.direction)
+        when Command::TurnLeft
+          position.copy_with direction: Direction.left(position.direction)
+        else
+          position
+        end
+      end
+  end
 end

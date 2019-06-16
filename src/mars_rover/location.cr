@@ -39,20 +39,6 @@ module Location
     end
   end
 
-  record Position, point : Point, direction : Direction do
-    def self.next(position : Position, command : Command) : Position
-      case command
-      when Command::MoveForward
-        position.copy_with point: Point.step_to(position.point, position.direction)
-      when Command::MoveBackward
-        position.copy_with point: Point.step_to(position.point, Direction.opposite(position.direction))
-      when Command::TurnRight
-        position.copy_with direction: Direction.right(position.direction)
-      when Command::TurnLeft
-        position.copy_with direction: Direction.left(position.direction)
-      else
-        position
-      end
-    end
-  end
+  record Position, point : Point, direction : Direction
+
 end
